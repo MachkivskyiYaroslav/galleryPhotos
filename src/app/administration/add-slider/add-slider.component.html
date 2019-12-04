@@ -1,0 +1,89 @@
+<div class="container">
+<div class="row content ">
+  <div class="form-content col col-sm-6 col-md-3">
+    <div class="forma">
+      <form  [formGroup]="userForm" >
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Title</mat-label>
+            <input autocomplete="off" matInput required   formControlName="title"   placeholder="Title">
+            <mat-icon matSuffix><i class="material-icons"></i></mat-icon>
+          </mat-form-field>
+          <mat-error  *ngIf=" userForm.get('title').touched && userForm.get('title').status === 'INVALID'">
+            <validation-errors [errors]="userForm.get('title').errors" errorPrefix="Title"></validation-errors>
+          </mat-error>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Alt</mat-label>
+            <input autocomplete="off" matInput required  formControlName="alt"   id="alt" placeholder="Alt">
+            <mat-icon matSuffix><i class="material-icons"></i></mat-icon>
+          </mat-form-field>
+          <mat-error  *ngIf=" userForm.get('alt').touched && userForm.get('alt').status === 'INVALID'">
+            <validation-errors [errors]="userForm.get('alt').errors" errorPrefix="Alt"></validation-errors>
+          </mat-error>
+        </p>
+        <p>
+          <mat-form-field>
+            <mat-label>Photo Responsive Status</mat-label>
+            <mat-select  #PhotoValue formControlName="photo_responsive_status"      required>
+              <mat-option  *ngFor="let status of responsiveModel | async" [value]="status.id">
+                {{status.label}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Link</mat-label>
+            <input autocomplete="off" matInput required   formControlName="album_link"  id="album_link" placeholder="Link">
+            <mat-icon matSuffix><i class="material-icons"></i></mat-icon>
+          </mat-form-field>
+          <mat-error  *ngIf=" userForm.get('album_link').touched && userForm.get('album_link').status === 'INVALID'">
+            <validation-errors [errors]="userForm.get('album_link').errors" errorPrefix="Link"></validation-errors>
+          </mat-error>
+        </p>
+        <p>
+          <button  mat-flat-button color="warn" (click)="onClick(file);">
+            <mat-icon>file_upload</mat-icon>
+<!--            {{text}}-->
+          </button>
+        </p>
+
+        <input type="file" formControlName="fileUpload" required #file
+               accept="{{accept}}" (change)="fileSend($event)" style="display:none;"/>
+        <mat-error  *ngIf=" userForm.get('fileUpload').touched && userForm.get('fileUpload').status === 'INVALID'">
+          <validation-errors [errors]="userForm.get('fileUpload').errors" errorPrefix="Upload"></validation-errors>
+        </mat-error>
+
+        <ul>
+          <li *ngFor="let file of files" [@fadeInOut]="file.state">
+            <mat-progress-bar [value]="file.progress"></mat-progress-bar>
+            <span id="file-label">
+            {{file.data.name}}
+              <a title="Retry" (click)="retryFile(file)" *ngIf="file.canRetry">
+            <mat-icon>refresh</mat-icon></a>
+            <a title="Cancel" (click)="cancelFile(file)" *ngIf="file.canCancel">
+            <mat-icon>cancel</mat-icon></a>
+            </span>
+          </li>
+        </ul>
+        <button  mat-flat-button color="warn" type="submit"  (click)="uploadFiles(file)">Submit</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-12 col-sm-6 preview-slide col-md-9"  >
+    <div class="picture-preview" [ngStyle]="{'background-image': 'url(  '+previewUrl[0]+')'}">
+    </div>
+  </div>
+</div>
+<!--  <div class="preview-content col-sm-6" [ngStyle]="{'background-image': 'url(  '+previewUrl[0]+')'}">-->
+<!--    <div class="preview" >-->
+<!--      <div class="bottom-content ">-->
+<!--        <h2>{{title}}</h2>-->
+<!--        <a href="{{link}}">TAKE A LOOK</a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+</div>

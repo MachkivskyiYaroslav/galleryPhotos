@@ -1,0 +1,60 @@
+<mat-drawer-container class="example-container" autosize>
+
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <nav class="administration-nav">
+      <div class="background">
+      </div>
+      <div class="logo">Zvinko Artem</div>
+      <!--      <ul>-->
+      <!--        <li *ngFor="let subModule of menu;"   routerLinkActive="active"   routerLink="{{subModule.link}}"><a><i class="{{subModule.icons}}"></i><span>{{subModule.title}}</span></a></li>-->
+      <!--      </ul>-->
+      <mat-accordion multi="false">
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <i class="material-icons">
+                photo_album
+              </i>
+              <span>Slider</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <ul>
+            <li routerLink="add-slider" (click)="drawer.toggle()" routerLinkActive="active"><a href=""> <i
+              class="material-icons">add_a_photo</i></a><span>Add Slider</span></li>
+            <li><a href=""><i class="material-icons">edit</i></a><span>Update Slider</span></li>
+          </ul>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Slider
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <li><a href="">Add Slider</a></li>
+          <li><a href="">Update Slider</a></li>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </nav>
+  </mat-drawer>
+  <div class="example-sidenav-content">
+    <nav class="title-nav">
+      <div class="title">
+        <i class="fa fa-bars" aria-hidden="true" (click)="drawer.toggle()"></i>
+      </div>
+      <div class="log-out">
+        <a href="/"><i class="fa fa-home" aria-hidden="true"></i></a>
+        <a><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+      </div>
+    </nav>
+    <div class="container-administration">
+      <h1>hello</h1>
+      <router-outlet></router-outlet>
+    </div>
+    <!--    <button type="button" mat-button (click)="drawer.toggle()">-->
+    <!--      Toggle sidenav-->
+    <!--    </button>-->
+  </div>
+
+</mat-drawer-container>

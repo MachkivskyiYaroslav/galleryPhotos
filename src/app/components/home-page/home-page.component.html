@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+  <a mat-button routerLink="/"><mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+     Home</a>
+  <span class="flex-grow"></span>
+  <a mat-button routerLink="/auth"><mat-icon>account_circle</mat-icon> Auth</a>
+
+  <a mat-button routerLink="/auth/sign-up">
+    <mat-icon>directions_walk</mat-icon>
+    Register
+  </a>
+
+
+</mat-toolbar>
+
+<p>home-page works!</p>
+<ul>
+  <li *ngFor="let type of albumTypes | async">
+    first: {{type.id}}
+    second: {{type.type}}
+  </li>
+</ul>
+
+<h1 >Hello {{(user | async)?.name}}</h1>
+<h2>{{(user | async)?.email}}</h2>

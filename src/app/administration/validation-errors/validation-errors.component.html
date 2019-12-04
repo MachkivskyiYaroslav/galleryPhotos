@@ -1,0 +1,3 @@
+<ng-container *ngIf="errors && errors['required']">{{errorPrefix}} is required</ng-container>
+<ng-container *ngIf="errors && errors['email']">{{errorPrefix}} is not valid</ng-container>
+<ng-container *ngIf="errors && errors['minlength']">{{errorPrefix}} Min length is 5</ng-container>
